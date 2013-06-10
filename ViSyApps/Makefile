@@ -8,8 +8,7 @@ ViSyGTK: ViSyGTK.c
 	$(C) $(GFLAGS) $(OFLAGS) -o ViSyGTK ViSyGTK.c
 
 ViSyLite: ViSyLite.c
-	$(C) $(OFLAGS) -o ViSyLite ViSyLite.c
-	$(C) -g $(OFLAGS) -I. ../visy/img.o -o ViSyTest ViSyTest.c
+	$(C) ViSyLite.c -I../ -lvisy -L../visy/ -o ViSyLite $(OFLAGS)  
 
 ViSyTest: ViSyTest.c
 	$(C) ViSyTest.c -I../ -lvisy -L../visy/ -o ViSyTest $(OFLAGS)  

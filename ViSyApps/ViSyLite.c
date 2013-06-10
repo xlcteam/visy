@@ -32,7 +32,7 @@ inline static void allocateCvImage(IplImage **img, CvSize size,
 void onTrack(int a)
 {
 
-	fs = cvOpenFileStorage(profile_name, 0, CV_STORAGE_WRITE);
+	fs = cvOpenFileStorage(profile_name, 0, CV_STORAGE_WRITE, NULL);
 	cvWriteInt(fs, "Hmax", Hmax);
 	cvWriteInt(fs, "Smax", Smax);
 	cvWriteInt(fs, "Vmax", Vmax);
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 	int cam = (argc > 2 ? atoi(argv[2]) : 0);
 
 	// value loading
-	fs = cvOpenFileStorage(profile_name, 0, CV_STORAGE_READ);
+	fs = cvOpenFileStorage(profile_name, 0, CV_STORAGE_READ, NULL);
 	Hmax = cvReadIntByName(fs, NULL, "Hmax", Hmax);
 	Smax = cvReadIntByName(fs, NULL, "Smax", Smax);
 	Vmax = cvReadIntByName(fs, NULL, "Vmax", Vmax);
@@ -175,7 +175,7 @@ int main(int argc, char** argv)
 
 		cvShowImage("img", img);
 		cvShowImage("treshed", imgThreshed);
-		cvShowImage("graph", imgGraph);
+		//cvShowImage("graph", imgGraph);
 
 		cvWaitKey(10);
 	}
