@@ -5,6 +5,7 @@
 #include <visy/visy.h>
 
 int Hmax = 30,Smax = 255,Vmax = 255,Hmin = 20,Smin = 100,Vmin = 100;
+int m_100 = 52;
 //int minH = 50;
 IplImage *img, *imgHSV, *imgThreshed;
 
@@ -24,6 +25,7 @@ void onTrack(int a)
 
 
 	fs = cvOpenFileStorage(profile_name, 0, CV_STORAGE_WRITE, NULL);
+	cvWriteInt(fs, "m_100", m_100);
 	cvWriteInt(fs, "Hmax", Hmax);
 	cvWriteInt(fs, "Smax", Smax);
 	cvWriteInt(fs, "Vmax", Vmax);
@@ -62,7 +64,7 @@ void onTrack(int a)
 	float X = ((img->width/2) - goal_center)*pix;
 	printf("X: %fcm\n", X);
 
-        float Y = (100 * 52) / (mode);
+        float Y = (100 * m_100) / (mode);
         printf("Y: %fcm\n", Y);
 
 
@@ -100,6 +102,7 @@ int main(int argc, char** argv)
 
 
 	fs = cvOpenFileStorage(profile_name, 0, CV_STORAGE_READ, NULL);
+	Hmax = cvReadIntByName(fs, NULL, "m_100", m_100);
 	Hmax = cvReadIntByName(fs, NULL, "Hmax", Hmax);
 	Smax = cvReadIntByName(fs, NULL, "Smax", Smax);
 	Vmax = cvReadIntByName(fs, NULL, "Vmax", Vmax);
@@ -127,6 +130,7 @@ int main(int argc, char** argv)
 	cvNamedWindow("graph", CV_WINDOW_AUTOSIZE);
 
 
+	cvCreateTrackbar("m_100", "treshed", &m_100, 255, onTrack);
 	cvCreateTrackbar("Hmin", "treshed", &Hmin, 180, onTrack);
 	cvCreateTrackbar("Smin", "treshed", &Smin, 255, onTrack);
 	cvCreateTrackbar("Vmin", "treshed", &Vmin, 255, onTrack);
