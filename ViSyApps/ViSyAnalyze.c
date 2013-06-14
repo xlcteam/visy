@@ -127,11 +127,11 @@ int main(int argc, char** argv)
 	cvNamedWindow("graph", CV_WINDOW_AUTOSIZE);
 
 
-	cvCreateTrackbar("Hmin", "treshed", &Hmin, 360, onTrack);
+	cvCreateTrackbar("Hmin", "treshed", &Hmin, 180, onTrack);
 	cvCreateTrackbar("Smin", "treshed", &Smin, 255, onTrack);
 	cvCreateTrackbar("Vmin", "treshed", &Vmin, 255, onTrack);
 
-	cvCreateTrackbar("Hmax", "treshed", &Hmax, 360, onTrack);
+	cvCreateTrackbar("Hmax", "treshed", &Hmax, 180, onTrack);
 	cvCreateTrackbar("Smax", "treshed", &Smax, 255, onTrack);
 	cvCreateTrackbar("Vmax", "treshed", &Vmax, 255, onTrack);
 	//cvCreateTrackbar("minH", "treshed", &minH, 255, onTrack);
