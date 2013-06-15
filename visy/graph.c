@@ -58,11 +58,13 @@ inline void visy_graph_draw(unsigned int **graph, unsigned int avg,
 int visy_graph_center_space(unsigned int **graph, unsigned int width,
 				CvSize size, float pix)
 {
-	int height = size.height * pix;
+	float height = size.height * pix;
 	int i = (width/2.0) - (size.width/pix);
 
+        //printf("height: %f\n", height);
 	for(; i < (int)((width/2.0) + (size.width/pix)); i++){
-		if((*graph)[i] < height){
+                //printf("%d %d\n", i, (*graph)[i]);
+		if((float) (*graph)[i] < height){
 			return 0;
 		}
 	}
